@@ -18,6 +18,11 @@ class TipoDeProduto(models.Model):
     qtd_disp = models.IntegerField()
     qtd_alug = models.IntegerField()
     qtd_rese = models.IntegerField()
+    class Meta:
+        # Gives the proper plural name for admin
+        verbose_name_plural = "Tipos de produtos"
+    def __str__(self):
+        return self.nome
 
 
 

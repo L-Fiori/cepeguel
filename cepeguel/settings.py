@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     
     # My apps
     'artigo',
+    'aluguel',
 
     # Third party apps
 ]
