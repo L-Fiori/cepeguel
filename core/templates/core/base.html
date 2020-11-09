@@ -1,0 +1,32 @@
+{% load static %}   
+
+<html>
+<head>
+    <title>base</title>
+<link rel="stylesheet"  href="{% static 'core/base.css' %}" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+<div class="pagina">
+    <div class="navbar">
+        <div id="divBusca">
+            <input type="text" id="txtBusca" placeholder="Buscar artigo..."/>  
+        </div>
+        <div class="textodanavbar">
+            <button class="button button1" onclick="document.location='../modalidades'">Modalidades</button>
+        </div>
+        <div class="textodanavbar">
+            <button class="button button1" onclick="document.location='../cestadeprodutos'">Cesta</button>
+        </div>
+        <div class="textodanavbar">
+            <button class="button button1" onclick="document.location='../menu'">Menu</button>
+        </div>
+    </div>
+    {% block content %}
+    {% endblock %}
+    <div class="footer">
+        Cepeguel    2020
+    </div>
+</div>
+</body>
+</html>

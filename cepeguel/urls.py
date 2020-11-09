@@ -23,5 +23,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('artigo/', include('artigo.urls')),
     path('aluguel/', include('aluguel.urls')),
-]
+    path('modalidades/', views.modalidades, name='modalidades'),
+    path('menu/', views.menu, name='menu'),
+    path('cestadeprodutos/', views.cestadeprodutos, name='cestadeprodutos')    
+    ]
 
