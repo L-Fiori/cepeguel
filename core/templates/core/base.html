@@ -2,7 +2,6 @@
 
 <html>
 <head>
-    <title>base</title>
 <link rel="stylesheet"  href="{% static 'core/base.css' %}" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
@@ -22,8 +21,10 @@
             <button class="button button1" onclick="document.location='../menu'">Menu</button>
         </div>
     </div>
+    <div class="fundo">
     {% block content %}
     {% endblock %}
+    </div>
     <div class="footer">
         Cepeguel    2020
     </div>
