@@ -73,30 +73,45 @@ button:hover {
 </style>
 <body>
 
-<form action="/action_page.php" style="border:1px solid #ccc">
+<form method="post" style="border:1px solid #ccc">{% csrf_token %}
   <div class="container">
     <h1>Cadastro CEPEguel</h1>
     <p>Por favor insira os dados abaixo para criar sua conta</p>
     <hr>
 
-    <label for="email"><b>Nome</b></label>
-    <input type="text" placeholder="Coloque seu nome" name="nome" required>
+    <label for="first_name"><b>Nome</b></label>
+    <input type="text" placeholder="Coloque seu nome" name="first_name" required>
 
-    <label for="email"><b>Telefone</b></label>
-    <input type="text" placeholder="Coloque seu telefone" name="telefone" required>
+    <label for="last_name"><b>Sobrenome</b></label>
+    <input type="text" placeholder="Coloque seu sobrenome" name="last_name" required>
 
-    <label for="email"><b>Número USP</b></label>
-    <input type="text" placeholder="Coloque seu número USP" name="numerousp" required>
+    <label for="telephone"><b>Telefone</b></label>
+    <input type="text" placeholder="Coloque seu telefone" name="telephone" required>
+
+    <label for="nusp"><b>Número USP</b></label>
+    <input type="text" placeholder="Coloque seu número USP" name="nusp" required>
 
     <label for="email"><b>Email</b></label>
     <input type="text" placeholder="Coloque seu email" name="email" required>
 
     <label for="psw"><b>Senha</b></label>
-    <input type="password" placeholder="Coloque sua senha" name="senha" required>
+    <input type="password" placeholder="Coloque sua senha" name="password1" required>
 
     <label for="psw-repeat"><b>Confirmação de senha</b></label>
-    <input type="password" placeholder="Confirme sua senha" name="confrimasenha" required>
+    <input type="password" placeholder="Confirme sua senha" name="password2" required>
     
+    {% for field in registration_form %}
+      <p>
+        {% for error in field.errors %}
+        <p style="color:red">{{ error }}</p>
+        {% endfor %}
+      </p>
+    {% endfor %}
+    {% if registration_form.non_field_errors %}
+      <div style="color: red">
+        <p>{{ registration_form.non_field_errors }}</p>
+      </div>
+    {% endif %}
 
     <div class="clearfix">
       <button type="button" class="cancelbtn" onclick="document.location='../'">Voltar</button>

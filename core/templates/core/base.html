@@ -2,9 +2,18 @@
 
 <html>
 <head>
-<link rel="stylesheet"  href="{% static 'core/base.css' %}" />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet"  href="{% static 'core/base.css' %}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
+    <title>Cepeguel</title>
+
+    {% if request.user.is_authenticated %}
+        <p>Olá, {{ request.user.first_name }} | <a href="{% url 'logout' %}">Sair</a></p>
+    {% else %}
+        <p><a href="{% url 'cadastro' %}">Cadastro</a> | <a href="{% url 'login' %}">Login</a></p>
+    {% endif %}
 </head>
+
 <body>
 <div class="pagina">
     <div class="navbar">

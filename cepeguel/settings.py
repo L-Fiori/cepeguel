@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'artigo',
     'aluguel',
     'core',
+    'usuarios',
 
     # Third party apps
 ]
@@ -74,6 +75,8 @@ TEMPLATES = [
         },
     },
 ]
+
+AUTH_USER_MODEL = 'usuarios.Usuario'
 
 WSGI_APPLICATION = 'cepeguel.wsgi.application'
 
@@ -111,7 +114,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br'
 
 TIME_ZONE = 'UTC'
 

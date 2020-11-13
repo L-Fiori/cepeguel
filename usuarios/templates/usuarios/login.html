@@ -1,0 +1,42 @@
+{% load static %}   
+<html>
+<head>
+    <link rel="stylesheet"  href="{% static 'core/base.css' %}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<title>Login</title>
+<form method="post">{% csrf_token %}
+    <div class='logologin'>
+        Aqui vai ter o logo
+    </div>
+    <div class="container">
+      <label for="email"><b>Email</b></label>
+      <input type="text" placeholder="Coloque seu email" name="email" required>
+  
+      <label for="password"><b>Senha</b></label>
+      <input type="password" placeholder="Coloque sua senha" name="password" required>
+  
+      {% for field in login_form %}
+        <p>
+          {% for error in field.errors %}
+            <p style="color: red">{{ error }}</p>
+            {% endfor %}
+        </p>
+      {% endfor %}
+      {% if login_form.non_field_errors %}
+        <div style="color: red">
+          <p>{{ login.form.non_field_errors %}</p>
+        </div>
+      {% endif %}
+
+      <button type="submit">Login</button>
+    </div>
+  
+    <div class="container">
+      <button type="button" class="cancelbtn" onclick="document.location='../cadastro'">Registrar</button>
+      <span class="psw"><a href="#">Esqueci minha senha</a></span>
+    </div>
+  </form>
+  </html>
+

@@ -1,4 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 # Create your views here.
 def home(request):
@@ -21,8 +23,3 @@ def login(request):
     context = {}
 
     return render(request, 'core/login.html', context)
-
-def cadastro(request):
-    context = {}
-
-    return render(request, 'core/cadastro.html', context)
