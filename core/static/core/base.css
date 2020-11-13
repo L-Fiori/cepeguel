@@ -10,27 +10,38 @@
   flex-direction: row;
 }
 .textodanavbar {
-  margin-right: 10%;
-  color: black;
+  margin-right: 5%;
+  color: white;
+  font-size: 18px;
 }
 
 .divBusca {
-  background-color: #2f4f4f;
-  border: solid 1px;
-  border-radius: 15px;
-  width: 300px;
-  height: 20px;
+  background-color: whitesmoke;
+  border: solid 4px #4abdac;
+
+  width: 20%;
+  height: 90%;
 }
 
-.txtBusca {
+#txtBusca {
   float: left;
   background-color: transparent;
   padding-left: 5px;
-  font-style: italic;
   font-size: 18px;
+  height: 100%;
+  width: 80%;
+}
+
+#btnBusca {
+  color: black;
   border: none;
-  height: 32px;
-  width: 260px;
+  height: 101%;
+  width: 20%;
+  padding-left: 5%;
+  font-weight: bold;
+  background: whitesmoke;
+  font-size: 10px;
+  border: solid 1px black;
 }
 
 .footer {
@@ -42,6 +53,7 @@
   background-color: #fc4a1a;
   color: white;
   text-align: center;
+  font-size: 18px;
 }
 
 .button {
@@ -119,14 +131,13 @@
 }
 
 .logo {
-  width: 30%;
   text-align: center;
   margin-top: 10%;
-  margin-bottom: 10%;
 }
 .textomenu {
   color: black;
-  margin-top: 10%;
+  margin-top: 5%;
+  font-size: 20px;
 }
 
 form {
@@ -192,8 +203,5 @@ span.psw {
 }
 
 .logologin {
-  border: 2px solid black;
   text-align: center;
-  width: 30%;
-  margin-left: 35%;
 }

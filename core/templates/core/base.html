@@ -7,27 +7,43 @@
     
     <title>Cepeguel</title>
 
-    {% if request.user.is_authenticated %}
-        <p>Olá, {{ request.user.first_name }} | <a href="{% url 'logout' %}">Sair</a></p>
-    {% else %}
-        <p><a href="{% url 'cadastro' %}">Cadastro</a> | <a href="{% url 'login' %}">Login</a></p>
-    {% endif %}
 </head>
 
 <body>
 <div class="pagina">
     <div class="navbar">
-        <div id="divBusca">
-            <input type="text" id="txtBusca" placeholder="Buscar artigo..."/>  
+        <div class="divBusca">
+            <input id="txtBusca" placeholder="Buscar..."/>
+            <button id="btnBusca">Buscar</button>
         </div>
+
         <div class="textodanavbar">
             <button class="button button1" onclick="document.location='../modalidades'">Modalidades</button>
         </div>
+        {% if request.user.is_authenticated %}
         <div class="textodanavbar">
             <button class="button button1" onclick="document.location='../cestadeprodutos'">Cesta</button>
         </div>
+        {% endif %}
         <div class="textodanavbar">
-            <button class="button button1" onclick="document.location='../menu'">Menu</button>
+            <button class="button button1" onclick="document.location='../'">Menu</button>
+        </div>
+        {% if request.user.is_authenticated %}
+        <div class="textodanavbar">
+            <button class="button button1" onclick="document.location='{% url 'logout' %}'">Sair</button>
+        </div>
+        <div class="textodanavbar">
+            Olá, {{ request.user.first_name }} 
+       </div>
+        {% else %}
+        <div class="textodanavbar">
+            <button class="button button1" onclick="document.location='{% url 'cadastro' %}'">Cadastro</button>
+        </div> 
+        <div class="textodanavbar">
+            <button class="button button1" onclick="document.location='{% url 'login' %}'">Login</button>
+        </div>
+        {% endif %}
+
         </div>
     </div>
     <div class="fundo">

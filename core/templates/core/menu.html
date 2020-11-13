@@ -1,10 +1,11 @@
 {% extends 'core/base.html' %}
+{% load static %}
 
 {% block content %}
 <title>Menu</title>
 <div class=paginamenu>
     <div class=logo>
-        <img src="../cepeguel/media/logo.png" alt="Logo" >
+        <img src="{% static 'core/imagens/logo.png' %}" alt=CEPEguel style="width:400px;height:292px;"">
     </div>
     <div class=textomenu>
      O CEPEguel foi criado com o intuito de facilitar o aluguel de artigos esportivos no CEPEUSP
