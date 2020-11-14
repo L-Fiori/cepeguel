@@ -1,44 +1,20 @@
 {% extends 'core/base.html' %}
 
 {% block content %}
+
 <title>Modalidades</title>
-<divc class= paginamodalidades>
-    <div class= duasmodalidades>
-        <div class= modalidade>
-            <div class= fotomodalidade>
-                aqui vem a foto
-            </div>
-            <div class= textomodalidade>
-                aqui vem o texto
-            </div>
+
+<div class='gridgeral'>
+<div class='gridmodalide'>
+        {% for item in obj%}      
+        <div class='modalidade'>
+                <button class="button button1" onclick="document.location='../produtosdemodalidade'">{{ item.first_name }}</button>
         </div>
-        <div class= modalidade>
-            <div class= fotomodalidade>
-                aqui vem a foto
-            </div>
-            <div class= textomodalidade>
-                aqui vem o texto
-            </div>
-        </div>
-    </div>
-    <div class= duasmodalidades>
-        <div class= modalidade>
-            <div class= fotomodalidade>
-                aqui vem a foto
-            </div>
-            <div class= textomodalidade>
-                aqui vem o texto
-            </div>
-        </div>
-        <div class= modalidade>
-            <div class= fotomodalidade>
-                aqui vem a foto
-            </div>
-            <div class= textomodalidade>
-                aqui vem o texto
-            </div>
-        </div>
-    </div>
+        {% endfor %}    
+
+</div>
 </div>
 
+
 {% endblock %}
+

@@ -21,6 +21,8 @@ from core.views import (
     modalidades,
     home,
     login,
+    produtosdemodalidade,
+    produto,
 )
 
 from usuarios.views import (
@@ -39,6 +41,8 @@ urlpatterns = [
     path('cestadeprodutos/', cestadeprodutos, name='cestadeprodutos'),
     path('cadastro/', registration_view, name='cadastro'),
     path('login/', login_view, name='login'),
-    path('logout/', logout_view, name="logout")
+    path('logout/', logout_view, name="logout"),
+    path('produtosdemodalidade/', produtosdemodalidade, name="produtosdemodalidade"),
+    path('produto/', produto, name="produto"),
     ]
 

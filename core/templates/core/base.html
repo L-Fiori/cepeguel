@@ -6,6 +6,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     
     <title>Cepeguel</title>
+<style>
+body{
+    background-color: whitesmoke;
+}
+</style>
 
 </head>
 
@@ -44,15 +49,15 @@
         </div>
         {% endif %}
 
-        </div>
     </div>
-    <div class="fundo">
-    {% block content %}
-    {% endblock %}
-    </div>
+
+      {% block content %}
+      {% endblock %}
+
     <div class="footer">
         Cepeguel    2020
     </div>
 </div>
+
 </body>
 </html>

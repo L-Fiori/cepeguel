@@ -1,0 +1,25 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<title>Produtos de COLOQUE AQUI O NOME</title>
+
+<div class='gridgeral'>
+    <div class='gridartigos'>
+        {% for item in obj%}  
+        <div class='artigo'>    
+            <div class='fotoartigo'>
+            foto
+            </div>
+            <div class='textoartigo'>
+                <button class="button button1" onclick="document.location='../produto'">Produto</button>
+            </div>
+        </div>
+        {% endfor %}    
+
+    </div>
+    
+</div>
+
+
+{% endblock %}

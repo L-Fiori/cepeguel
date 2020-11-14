@@ -5,8 +5,25 @@
 
 
 <title>Cesta de produtos</title>
+<div class='paginacesta'>
+    <div class='gridcesta'>
+        <div class='gridartigos'>
+            {% for item in obj%}  
+            <div class='artigo'>    
+                <div class='fotoartigo'>
+                foto
+                </div>
+                <div class='textoartigo'>
+                    Nome
+                </div>
+            </div>
+            {% endfor %}    
 
-Vai ser muito parecido com o modalidades
-
+        </div>
+    </div>
+    <div>
+        <button class="button button1" onclick="document.location='../modalidades'">Alugar</button>
+      </div>
+</div>
 
 {% endblock %}

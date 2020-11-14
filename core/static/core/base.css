@@ -1,5 +1,5 @@
 .pagina {
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .navbar {
@@ -37,7 +37,7 @@
   border: none;
   height: 101%;
   width: 20%;
-  padding-left: 5%;
+  padding-left: 4%;
   font-weight: bold;
   background: whitesmoke;
   font-size: 10px;
@@ -81,47 +81,9 @@
 
 .fundo {
   background-color: whitesmoke;
+  position: relative;
+  bottom: 0;
   height: 100%;
-}
-.modalidade {
-  background-color: orange;
-  width: 35%;
-  height: 90%;
-  margin-left: 10%;
-  margin-top: 10%;
-  text-align: justify;
-  display: flex;
-  flex-direction: column;
-}
-
-.fotomodalidade {
-  width: 50%;
-  height: 50%;
-  margin-left: 25%;
-  margin-top: 10%;
-  border: 1px solid black;
-  text-align: center;
-}
-
-.textomodalidade {
-  width: 80%;
-  margin-left: 10%;
-  margin-bottom: 10%;
-  margin-top: 10%;
-  text-align: center;
-}
-
-.duasmodalidades {
-  display: flex;
-  flex-direction: row;
-  width: 80%;
-}
-
-.paginamodalidades {
-  text-align: justify;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 .paginamenu {
@@ -133,6 +95,7 @@
 .logo {
   text-align: center;
   margin-top: 10%;
+  border: 1px solid black;
 }
 .textomenu {
   color: black;
@@ -204,4 +167,89 @@ span.psw {
 
 .logologin {
   text-align: center;
+  margin-left: 42.5%;
+  width: 15%;
+  border: 1px solid black;
+}
+
+.gridmodalide {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
+}
+
+.gridgeral {
+  position: relative;
+  margin-left: 20%;
+  width: 60%;
+}
+
+.modalidade {
+  position: relative;
+  background-image: linear-gradient(to right, #4abdac, #fc4a1a);
+  color: white;
+  width: 80%;
+  height: 75%;
+  margin-top: 10%;
+  text-align: center;
+  padding-top: 5%;
+  justify-self: center;
+  border: 1px solid black;
+}
+
+.gridartigos {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 33.333333%);
+}
+
+.artigo {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  justify-self: center;
+  margin-top: 10%;
+  width: 200px;
+  height: 200px;
+}
+
+.fotoartigo {
+  height: 60%;
+  margin-bottom: 10%;
+  text-align: center;
+}
+
+.textoartigo {
+  position: relative;
+  background-image: linear-gradient(to right, #4abdac, #fc4a1a);
+  color: white;
+  height: 30%;
+  text-align: center;
+  padding-top: 7%;
+  justify-self: center;
+  border: 1px solid black;
+}
+
+.paginadeproduto {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 50%;
+  margin-left: 25%;
+  height: 50%;
+  align-items: center;
+}
+
+.paginacesta {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 50%;
+  width: 100%;
+  align-items: center;
+}
+
+.gridcesta {
+  position: relative;
+  width: 60%;
 }
