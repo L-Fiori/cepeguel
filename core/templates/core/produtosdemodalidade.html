@@ -11,8 +11,11 @@
             <div class='fotoartigo'>
             foto
             </div>
-            <div class='textoartigo'>
-                <button class="botao botao1laranja" onclick="document.location='../produto'", style="width:50%">Produto</button>
+            <div class='textoartigo'>           
+               <a href="{% url 'artigo:modalidades' item.id %}">
+                  {{ item.nome }}
+               </a>
+
             </div>
         </div>
         {% endfor %}    

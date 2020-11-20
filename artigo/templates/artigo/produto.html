@@ -4,22 +4,29 @@
 
 <title>Produto</title>
 
-
+    
     <div class='paginadeproduto'>
+
         <div class='artigo'>    
             <div class='fotoartigo'>
               foto
             </div>
             <div class='textoartigo'>
-                texto
+                {{ object_list.nome }}
             </div>
         </div>
         <div style='margin-top:3%'>
-          <button class="botao botao1laranja" onclick="document.location='../modalidades'">Alugar</button>
+          {% if object_list in current_order_products %}
+          <a class="botao botao1laranja" href="{% url 'carrinho:order_details' %}">Ir Para Carrinho</a>
+          {% else %}
+          <a class="botao botao1laranja" href="{% url 'carrinho:add_to_cart' object_list.id %}">Alugar</a>
+          {% endif %}
+        
         </div>
         <div style='margin-top:3%'>
-            Disponibilidade: x
+            Disponibilidade: {{ object_list.qtd_disp }}
         </div>
+
     </div>
 
 

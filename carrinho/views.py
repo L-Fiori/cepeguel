@@ -19,7 +19,6 @@ def get_user_pending_order(request):
         return order[0]
     return 0
 
-@login_required
 def add_to_cart(request, **kwargs):
     # get the user profile
     user_profile = get_object_or_404(Usuario, email=request.user)
@@ -37,7 +36,7 @@ def add_to_cart(request, **kwargs):
 
     # show confirmation message and redirect back to the same page
     messages.info(request, "item added to cart")
-    return redirect(reverse('artigo:modalidades'))
+    return redirect(reverse('carrinho:order_details'))
 
 def delete_from_cart(request, item_id):
     item_to_delete = OrderItem.objects.filter(pk=item_id)
@@ -69,7 +68,7 @@ def checkout(request, **kwargs):
                     source=token,
                 )
 
-                return redirect(reverse('artigo:modalidades',
+                return redirect(reverse('carrinho:order_details',
                         kwargs={
                             'token': token
                         })
@@ -86,7 +85,7 @@ def checkout(request, **kwargs):
             })
 
             if result.is_success or result.transaction:
-                return redirect(reverse('artigo:modalidades',
+                return redirect(reverse('carrinho:order_details',
                         kwargs={
                             'token': result.transaction.id
                         })
@@ -94,7 +93,7 @@ def checkout(request, **kwargs):
             else:
                 for x in result.errors.deep_errors:
                     messages.info(request, x)
-                return redirect(reverse('artigo:modalidades'))
+                return redirect(reverse('carrinho:order_details'))
             
     context = {
         'order': existing_order,
@@ -141,7 +140,7 @@ def update_transaction_records(request, token):
     # send an email to the customer
     # look at tutorial on how to send emails with sendgrid
     messages.info(request, "Thank you! Your purchase was successful!")
-    return redirect(reverse('artigo:modalidades'))
+    return redirect(reverse('carrinho:order_details'))
 
 
 def success(request, **kwargs):

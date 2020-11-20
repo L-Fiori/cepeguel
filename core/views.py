@@ -11,13 +11,13 @@ def home(request):
     return render(request, 'core/menu.html', context)
 
 def modalidades(request):
-    obj=Usuario.objects.all()
+    obj=TipoDeProduto.objects.all()
     context = {'obj': obj}
 
     return render(request, 'core/modalidades.html', context)
 
 def produtosdemodalidade(request):
-    obj=Usuario.objects.all()
+    obj=TipoDeProduto.objects.all()
     context = {'obj': obj}
 
     return render(request, 'core/produtosdemodalidade.html', context)

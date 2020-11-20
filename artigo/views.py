@@ -42,8 +42,8 @@ def produto_update(request, ide):
     return render(request, "produto_create.html", context)
 
 # ------- Carrinho -----------------------
-def modalidades(request):
-    object_list = TipoDeProduto.objects.all()
+def modalidades(request, item_id):
+    object_list = TipoDeProduto.objects.get(id = item_id)
     filtered_orders = Order.objects.filter(owner=request.user.id, is_ordered=False)
     current_order_products = []
     if filtered_orders.exists():

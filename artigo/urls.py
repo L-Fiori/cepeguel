@@ -6,5 +6,7 @@ from .views import modalidades
 app_name = 'artigo'
 
 urlpatterns = [
-    url(r'^', modalidades, name='modalidades')
+    url(r'^(?P<item_id>[-\w]+)/$', modalidades, name='modalidades')
+    #url(r'^', modalidades, name='modalidades')
+
 ]
