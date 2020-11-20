@@ -23,29 +23,29 @@ body{
         </div>
 
         <div class="textodanavbar">
-            <button class="button button1" onclick="document.location='../modalidades'">Modalidades</button>
+            <button class="botao botao1" onclick="document.location='../modalidades'">Modalidades</button>
         </div>
         {% if request.user.is_authenticated %}
         <div class="textodanavbar">
-            <button class="button button1" onclick="document.location='../cestadeprodutos'">Cesta</button>
+            <button class="botao botao1" onclick="document.location='../cestadeprodutos'">Cesta</button>
         </div>
         {% endif %}
         <div class="textodanavbar">
-            <button class="button button1" onclick="document.location='../'">Menu</button>
+            <button class="botao botao1" onclick="document.location='../'">Menu</button>
         </div>
         {% if request.user.is_authenticated %}
         <div class="textodanavbar">
-            <button class="button button1" onclick="document.location='{% url 'logout' %}'">Sair</button>
+            <button class="botao botao1" onclick="document.location='{% url 'logout' %}'">Sair</button>
         </div>
         <div class="textodanavbar">
             Olá, {{ request.user.first_name }} 
        </div>
         {% else %}
         <div class="textodanavbar">
-            <button class="button button1" onclick="document.location='{% url 'cadastro' %}'">Cadastro</button>
+            <button class="botao botao1" onclick="document.location='{% url 'cadastro' %}'">Cadastro</button>
         </div> 
         <div class="textodanavbar">
-            <button class="button button1" onclick="document.location='{% url 'login' %}'">Login</button>
+            <button class="botao botao1" onclick="document.location='{% url 'login' %}'">Login</button>
         </div>
         {% endif %}
 

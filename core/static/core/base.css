@@ -16,20 +16,20 @@
 }
 
 .divBusca {
-  background-color: whitesmoke;
+  background-color: #4abdac;
   border: solid 4px #4abdac;
-
   width: 20%;
   height: 90%;
 }
 
 #txtBusca {
   float: left;
-  background-color: transparent;
+  background-color: whitesmoke;
   padding-left: 5px;
   font-size: 18px;
   height: 100%;
   width: 80%;
+  border-radius: 10px;
 }
 
 #btnBusca {
@@ -42,6 +42,7 @@
   background: whitesmoke;
   font-size: 10px;
   border: solid 1px black;
+  border-radius: 10px;
 }
 
 .footer {
@@ -56,26 +57,39 @@
   font-size: 18px;
 }
 
-.button {
+.botao {
   color: white;
   padding: 2px 8px;
   text-align: center;
-  text-decoration: none;
   display: inline-block;
   font-size: 18px;
   margin: 2px 2px;
   transition-duration: 0.4s;
   cursor: pointer;
+  border-radius: 5px;
 }
 
-.button1 {
+.botao1 {
   background-color: #4abdac;
   color: white;
   border: 2px solid #4abdac;
+  border-radius: 5px;
 }
 
-.button1:hover {
-  background-color: white;
+.botao1:hover {
+  background-color: whitesmoke;
+  color: black;
+}
+
+.botao1laranja {
+  background-color: #f7b733;
+  color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.botao1laranja:hover {
+  background-color: whitesmoke;
   color: black;
 }
 
@@ -186,15 +200,13 @@ span.psw {
 
 .modalidade {
   position: relative;
-  background-image: linear-gradient(to right, #4abdac, #fc4a1a);
   color: white;
   width: 80%;
   height: 75%;
   margin-top: 10%;
   text-align: center;
-  padding-top: 5%;
+  padding-top: 0%;
   justify-self: center;
-  border: 1px solid black;
 }
 
 .gridartigos {
@@ -211,6 +223,7 @@ span.psw {
   margin-top: 10%;
   width: 200px;
   height: 200px;
+  border-radius: 5px;
 }
 
 .fotoartigo {
@@ -221,13 +234,11 @@ span.psw {
 
 .textoartigo {
   position: relative;
-  background-image: linear-gradient(to right, #4abdac, #fc4a1a);
-  color: white;
+  color: black;
   height: 30%;
   text-align: center;
   padding-top: 7%;
   justify-self: center;
-  border: 1px solid black;
 }
 
 .paginadeproduto {
