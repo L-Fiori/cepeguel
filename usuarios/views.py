@@ -3,6 +3,9 @@ from django.contrib.auth import login, authenticate, logout
 
 from usuarios.forms import RegistrationForm, AccountAuthenticationForm
 
+from .models import Usuario
+from carrinho.models import Order
+
 # Create your views here.
 
 def registration_view(request):
@@ -51,3 +54,6 @@ def login_view(request):
 
     context['login_form'] = form
     return render(request, 'usuarios/login.html', context)
+
+
+# ------ Carrinho ----------------------------

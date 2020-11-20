@@ -18,8 +18,8 @@ from django.urls import path, include
 
 from core.views import (
     cestadeprodutos,
-    modalidades,
     home,
+    modalidades,
     login,
     produtosdemodalidade,
     produto,
@@ -35,14 +35,13 @@ urlpatterns = [
     path('', home, name='home'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
-    path('artigo/', include('artigo.urls')),
     path('aluguel/', include('aluguel.urls')),
     path('modalidades/', modalidades, name='modalidades'),
-    path('cestadeprodutos/', cestadeprodutos, name='cestadeprodutos'),
+    path('cestadeprodutos/', include('carrinho.urls', namespace='carrinho')),
     path('cadastro/', registration_view, name='cadastro'),
     path('login/', login_view, name='login'),
     path('logout/', logout_view, name="logout"),
     path('produtosdemodalidade/', produtosdemodalidade, name="produtosdemodalidade"),
-    path('produto/', produto, name="produto"),
+    path('produto/', include('artigo.urls', namespace='artigo')),
     ]
 

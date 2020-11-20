@@ -25,34 +25,6 @@ class Aluguel(models.Model):
         # Gives the proper plural name for admin
         verbose_name_plural = "Aluguéis"
 
-    @property
-    def delete_after_five_hours(self):
-        # Se nada acontecer, a instância do aluguel será deletada em cinco horas.
-
-        time = self.created_at + datetime.timedelta(minutes=300)
-        if self.created_at < (datetime.datetime.now() - datetime.timedelta(minutes=300)):
-            # Falta implementar a mudança do status do artigo requerido de reservado para disponível
-            # Talvez implementar aqui também o ban do usuário, mas isso é depois
-            obj = Aluguel.objects.get(pk=self.id)
-            obj.delete()
-            return True
-        else:
-            return False
-
-    @property
-    def delete_after_takeout(self):
-        # Se o usuário pegar o artigo em menos de cinco horas, muda o status do artigo para alugado e
-        # deleta a instância do aluguel.
-
-        if self.user_takeout:
-            produto = self.tipo_prod
-            obj_aluguel = Aluguel.objects.get(pk=self.id)
-            obj_produto = Produto.objects.get(nome=produto)
-
-            inst.delete()
-            return True
-        else:
-            return False
 
 '''
 

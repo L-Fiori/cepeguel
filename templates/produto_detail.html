@@ -1,0 +1,16 @@
+{% block content %}
+<h1> Tipos de Produtos Em Estoque </h1>
+<table>
+<tr>
+<th>Nome</th>
+<th>Esporte</th>
+<th>Quantidade Disponível</th>
+</tr>
+<tr>
+<td> {{ obj.nome }} </td>
+<td> {{ obj.esporte }} </td>
+<td> {{ obj.qtd_disp }} </td>
+</tr>
+</table>
+<a href='/form_aluguel/{{ obj.id }}'>Formulário de Aluguel</a>
+{% endblock %}

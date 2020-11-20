@@ -1,6 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.core.validators import RegexValidator
+from artigo.models import Produto, TipoDeProduto
+from django.conf import settings
+from django.db.models.signals import post_save
+
 
 # Create your models here.
 
@@ -62,6 +66,8 @@ class Usuario(AbstractBaseUser):
     is_staff        = models.BooleanField(default=False)
     is_superuser    = models.BooleanField(default=False)
 
+    #meus_alugueis   = models.ManyToManyField(TipoDeProduto, blank=True)
+
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name', 'nusp', 'telephone']
 
@@ -75,7 +81,13 @@ class Usuario(AbstractBaseUser):
         
     def has_module_perms(self, app_label):
         return True
-    
+
+""" def post_save_profile_create(sender, instance, created, *args, **kwargs):
+    if created:
+        Usuario.objects.get_or_create(user=instance)
+
+post_save.connect(post_save_profile_create, sender=Usuario) """
+
 
 
 

@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'aluguel',
     'core',
     'usuarios',
+    'carrinho',
 
     # Third party apps
 ]
@@ -129,8 +130,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-MEDIA_URL = '/imagens/'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
-]

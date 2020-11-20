@@ -23,10 +23,10 @@ def produtosdemodalidade(request):
     return render(request, 'core/produtosdemodalidade.html', context)
 
 def cestadeprodutos(request):
-    obj=Usuario.objects.all()
+    obj=TipoDeProduto.objects.all()
     context = {'obj': obj}
-    
-    return render(request, 'core/cestadeprodutos.html', context)
+
+    return render(request, 'carrinho/cestadeprodutos.html', context)
 
 def login(request):
     context = {}

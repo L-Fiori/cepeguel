@@ -1,0 +1,26 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<title>Modalidades</title>
+<div class='gridgeral'>
+    <div class='gridmodalide'>
+            {% for item in object_list%}      
+            <div class="modalidades">
+                <p>{{ item.nome }}</p>
+                <p>Disponibilidade: {{ item.qtd_disp }}</p>
+
+                {% if item in current_order_products %}
+                <a href="{% url 'carrinho:order_details' %}" class="btn btn-warning">Ir para o carrinho</a>
+                {% else %}
+                <a href="{% url 'carrinho:add_to_cart' item.id %}" class="btn btn-warning">Adicionar ao Carrinho</a>
+                {% endif %}
+
+
+            </div>
+            {% endfor %}    
+    
+    </div>
+    </div>
+    
+    
+    {% endblock %}
