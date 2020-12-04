@@ -14,18 +14,24 @@ class Produto(models.Model):
     disp     = models.BooleanField()
     alug     = models.BooleanField()
     rese     = models.BooleanField()
+
     def __str__(self):
         return self.tipo
 
+class Modalidade(models.Model):
+    nome     = models.CharField(max_length=100, unique=True, null=True)
+
+    def __str__(self):
+        return self.nome
+
 class TipoDeProduto(models.Model):
     nome     = models.CharField(max_length = 100)
-    esporte  = models.CharField(max_length = 100)
-    qtd_disp = models.IntegerField()
-    qtd_alug = models.IntegerField(default=0)
-    qtd_rese = models.IntegerField(default=0)
+    modalidade  = models.ForeignKey('Modalidade', on_delete=models.CASCADE, default="1")
+
     class Meta:
         # Gives the proper plural name for admin
         verbose_name_plural = "Tipos de produtos"
+
     def __str__(self):
         return self.nome
 

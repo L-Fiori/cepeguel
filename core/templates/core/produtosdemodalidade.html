@@ -2,27 +2,19 @@
 
 {% block content %}
 
-<title>Produtos de COLOQUE AQUI O NOME</title>
+<title>Modalidades</title>
 
 <div class='gridgeral'>
-    <div class='gridartigos'>
-        {% for item in obj%}  
-        <div class='artigo'>    
-            <div class='fotoartigo'>
-            foto
-            </div>
-            <div class='textoartigo'>           
-               <a href="{% url 'artigo:modalidades' item.id %}">
-                  {{ item.nome }}
-               </a>
-
-            </div>
+<div class='gridmodalide'>
+        {% for item in obj %} 
+        <div class='modalidade'>
+                <button class="botao botao1laranja" onclick="document.location='#'", style="width:100%;height:100%;margin-top:0px;margin-left:0px;border:1px solid black">{{ item.esporte }}</button>
         </div>
-        {% endfor %}    
+        {% endfor %}
 
-    </div>
-    
+</div>
 </div>
 
 
 {% endblock %}
+

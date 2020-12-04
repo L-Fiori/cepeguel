@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from artigo.models import TipoDeProduto
+
+from artigo.models import TipoDeProduto, Modalidade
 from usuarios.models import Usuario
+from carrinho.models import Order, OrderItem
 
 # Create your views here.
 def home(request):
@@ -11,16 +13,38 @@ def home(request):
     return render(request, 'core/menu.html', context)
 
 def modalidades(request):
-    obj=TipoDeProduto.objects.all()
-    context = {'obj': obj}
+    modalidades = Modalidade.objects.all()
+    context = {'modalidades': modalidades}
 
     return render(request, 'core/modalidades.html', context)
 
-def produtosdemodalidade(request):
-    obj=TipoDeProduto.objects.all()
+def produtos(request):
+    obj = Produto.objects.all() # Estamos pegando TODOS os produtos, mas queremos os produtos específicos para o tipo de produto selecionado
+    context = {}
+
+    return render(request, 'core/produtos.html', context)
+
+def produtosdemodalidade(request, modalidade_nome):
+    produtos = TipoDeProduto.objects.get(modalidade=modalidade_nome) # Estamos pegando TODOS os tipos de produto, mas queremos os TIPOS DE PRODUTO ESPECÍFICOS PARA A MODALIDADE SELECIONADA
     context = {'obj': obj}
 
     return render(request, 'core/produtosdemodalidade.html', context)
+
+def produto(request, item_id):
+    obj = Produto.objects.get(id = item_id)
+    filtered_orders = Order.objects.filter(owner=request.user.id, is_ordered=False)
+    current_order_products = []
+    if filtered_orders.exists():
+    	user_order = filtered_orders[0]
+    	user_order_items = user_order.items.all()
+    	current_order_products = [product.product for product in user_order_items]
+
+    context = {
+        'obj': obj,
+        'current_order_products': current_order_products
+    }
+
+    return render(request, 'core/produto.html', context)
 
 def cestadeprodutos(request):
     obj=TipoDeProduto.objects.all()
@@ -32,9 +56,3 @@ def login(request):
     context = {}
 
     return render(request, 'core/login.html', context)
-
-def produto(request):
-    context = {}
-
-    return render(request, 'core/produto.html', context)
-

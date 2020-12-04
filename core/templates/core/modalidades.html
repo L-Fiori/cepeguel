@@ -6,11 +6,11 @@
 
 <div class='gridgeral'>
 <div class='gridmodalide'>
-        {% for item in obj%}      
+        {% for modalidade in modalidades %} 
         <div class='modalidade'>
-                <button class="botao botao1laranja" onclick="document.location='../produtosdemodalidade'", style="width:100%;height:100%;margin-top:0px;margin-left:0px;border:1px solid black">{{ item.esporte }}</button>
+                <button class="botao botao1laranja" onclick="document.location='{% url "core:produtosdemodalidade" modalidade.nome %}'", style="width:100%;height:100%;margin-top:0px;margin-left:0px;border:1px solid black">{{ modalidade.nome }}</button>
         </div>
-        {% endfor %}    
+        {% endfor %}
 
 </div>
 </div>
