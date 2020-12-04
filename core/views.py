@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
-from artigo.models import TipoDeProduto, Modalidade
+from artigo.models import TipoDeProduto, Modalidade, Produto
 from usuarios.models import Usuario
 from carrinho.models import Order, OrderItem
 
@@ -18,20 +18,23 @@ def modalidades(request):
 
     return render(request, 'core/modalidades.html', context)
 
-def produtos(request):
-    obj = Produto.objects.all() # Estamos pegando TODOS os produtos, mas queremos os produtos específicos para o tipo de produto selecionado
-    context = {}
-
-    return render(request, 'core/produtos.html', context)
-
-def produtosdemodalidade(request, modalidade_nome):
-    produtos = TipoDeProduto.objects.get(modalidade=modalidade_nome) # Estamos pegando TODOS os tipos de produto, mas queremos os TIPOS DE PRODUTO ESPECÍFICOS PARA A MODALIDADE SELECIONADA
-    context = {'obj': obj}
+def produtosdemodalidade(request, id):
+    produtosdemodalidade = TipoDeProduto.objects.filter(modalidade=id)
+    context = {'produtosdemodalidade': produtosdemodalidade,
+               'id_antigo': id} 
 
     return render(request, 'core/produtosdemodalidade.html', context)
 
-def produto(request, item_id):
-    obj = Produto.objects.get(id = item_id)
+def produtos(request, id_antigo, id):
+    produtos = Produto.objects.filter(tipo=id)
+    context = {'produtos': produtos,
+               'id_antigo2': id_antigo,
+               'id_antigo1': id}
+
+    return render(request, 'core/produtos.html', context)
+
+def produto(request, id_antigo2, id_antigo1, item_id):
+    obj = Produto.objects.get(id=item_id)
     filtered_orders = Order.objects.filter(owner=request.user.id, is_ordered=False)
     current_order_products = []
     if filtered_orders.exists():

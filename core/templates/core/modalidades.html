@@ -8,7 +8,7 @@
 <div class='gridmodalide'>
         {% for modalidade in modalidades %} 
         <div class='modalidade'>
-                <button class="botao botao1laranja" onclick="document.location='{% url "core:produtosdemodalidade" modalidade.nome %}'", style="width:100%;height:100%;margin-top:0px;margin-left:0px;border:1px solid black">{{ modalidade.nome }}</button>
+                <button class="botao botao1laranja" onclick="document.location='{% url "core:produtosdemodalidade" modalidade.id %}'", style="width:100%;height:100%;margin-top:0px;margin-left:0px;border:1px solid black">{{ modalidade.nome }}</button>
         </div>
         {% endfor %}
 

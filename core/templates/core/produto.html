@@ -12,19 +12,19 @@
               foto
             </div>
             <div class='textoartigo'>
-                {{ object_list.nome }}
+                {{ obj.nome }}
             </div>
         </div>
         <div style='margin-top:3%'>
           {% if object_list in current_order_products %}
           <a class="botao botao1laranja" href="{% url 'carrinho:order_details' %}">Ir Para Carrinho</a>
           {% else %}
-          <a class="botao botao1laranja" href="{% url 'carrinho:add_to_cart' object_list.id %}">Alugar</a>
+          <a class="botao botao1laranja" href="{% url 'carrinho:add_to_cart' obj.id %}">Alugar</a>
           {% endif %}
         
         </div>
         <div style='margin-top:3%'>
-            Disponibilidade: {{ object_list.qtd_disp }}
+            Disponibilidade: {{ obj.qtd_disp }}
         </div>
 
     </div>
