@@ -7,7 +7,7 @@ from django.urls import reverse
 from core.views import produto
 
 from usuarios.models import Usuario, ManagerDoUsuario
-from artigo.models import TipoDeProduto
+from artigo.models import TipoDeProduto, Produto
 
 from carrinho.extras import generate_order_id
 from carrinho.models import OrderItem, Order
@@ -20,23 +20,30 @@ def get_user_pending_order(request):
     return 0
 
 def add_to_cart(request, **kwargs):
-    # get the user profile
-    user_profile = get_object_or_404(Usuario, email=request.user)
-    # filter products by id
-    product = TipoDeProduto.objects.filter(id=kwargs.get('item_id', "")).first()
-    # create orderItem of the selected product
-    order_item, status = OrderItem.objects.get_or_create(product=product)
-    # create order associated with the user
-    user_order, status = Order.objects.get_or_create(owner=user_profile, is_ordered=False)
-    user_order.items.add(order_item)
-    if status:
-        # generate a reference code
-        user_order.ref_code = generate_order_id()
-        user_order.save()
+    existing_order = get_user_pending_order(request)
+    lista_de_produtos = existing_order.get_cart_total()
+    if ( lista_de_produtos < 3):
+    
+        # get the user profile
+        user_profile = get_object_or_404(Usuario, email=request.user)
+        # filter products by id
+        product = Produto.objects.filter(id=kwargs.get('item_id', "")).first()
+        # create orderItem of the selected product
+        order_item, status = OrderItem.objects.get_or_create(product=product)
+        # create order associated with the user
+        user_order, status = Order.objects.get_or_create(owner=user_profile, is_ordered=False)
+        user_order.items.add(order_item)
+        if status:
+            # generate a reference code
+            user_order.ref_code = generate_order_id()
+            user_order.save()
 
-    # show confirmation message and redirect back to the same page
-    messages.info(request, "item added to cart")
-    return redirect(reverse('carrinho:order_details'))
+        # show confirmation message and redirect back to the same page
+        messages.info(request, "item added to cart")
+        return redirect(reverse('carrinho:order_details'))
+        
+    else:
+        return redirect(reverse('carrinho:order_details'))
 
 def delete_from_cart(request, item_id):
     item_to_delete = OrderItem.objects.filter(pk=item_id)
