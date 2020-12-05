@@ -11,10 +11,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 class Produto(models.Model):
     tipo     = models.ForeignKey('TipoDeProduto', on_delete=models.CASCADE)
     nome     = models.CharField(max_length=100, null=True)
-    foto     = models.FileField(upload_to = '{}/fotos/fotosdeartigo'.format(BASE_DIR),max_length=100)
+    foto     = models.ImageField(upload_to = 'fotosdeartigo', max_length=300)
     disp     = models.BooleanField()
     alug     = models.BooleanField()
     rese     = models.BooleanField()
+    pack     = models.IntegerField(default=1)
 
     def __str__(self):
         return self.nome

@@ -69,6 +69,15 @@
   border-radius: 5px;
 }
 
+.botaoproduto {
+  color: white;
+  text-align: center;
+  font-size: 15px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
 .botao1 {
   background-color: #4abdac;
   color: white;
@@ -221,23 +230,62 @@ span.psw {
   border: 1px solid black;
   justify-self: center;
   margin-top: 10%;
-  width: 200px;
-  height: 200px;
+  width: 85%;
   border-radius: 5px;
 }
 
 .fotoartigo {
-  height: 60%;
-  margin-bottom: 10%;
+  height: 65%;
+  margin-bottom: 1%;
   text-align: center;
+  border: 1px solid black;
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-top: 2%;
+  border-radius: 5px;
 }
 
 .textoartigo {
   position: relative;
   color: black;
-  height: 30%;
+  height: 20%;
   text-align: center;
-  padding-top: 7%;
+  padding-top: 2%;
+  margin-bottom: 3%;
+  margin-left: 2%;
+  margin-right: 2%;
+  justify-self: center;
+}
+
+.disponibilidadeartigo {
+  position: relative;
+  color: black;
+  height: 10%;
+  text-align: center;
+  justify-self: center;
+  font-size: 15px;
+}
+
+.fotoartigoproduto {
+  height: 79%;
+  margin-bottom: 1%;
+  text-align: center;
+  border: 1px solid black;
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-top: 2%;
+  border-radius: 5px;
+}
+
+.textoartigoproduto {
+  position: relative;
+  color: black;
+  height: 15%;
+  text-align: center;
+  padding-top: 2%;
+  margin-bottom: 3%;
+  margin-left: 2%;
+  margin-right: 2%;
   justify-self: center;
 }
 
