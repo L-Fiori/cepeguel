@@ -17,9 +17,8 @@
         </div>
         <div>
             {% if obj.disp %}  
-                {% if object_list in current_order_products %}
+                {% if obj in current_order_products %}
                 <button class="botao botao1laranja" onclick="document.location='{% url "carrinho:order_details" %}'", >Ir Para Carrinho</button>
-                <a class="botao botao1laranja" href="{% url 'carrinho:order_details' %}">Ir Para Carrinho</a>
                 {% else %}
                 <button class="botao botao1laranja" onclick="document.location='{% url "carrinho:add_to_cart" obj.id %}'", >Alugar</button>
                 {% endif %}

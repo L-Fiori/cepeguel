@@ -29,14 +29,20 @@
        <tr>
          {% if order.get_cart_total != None %}
          <td colspan=2>
-           <strong class="pull-right">Order Total:</strong>
-         </td>
-         
+          <strong class="pull-right">Itens a serem alugados:</strong>
+         </td>         
          <td colspan= 1>
            <strong>{{ order.get_cart_total }}</strong>
          </td>
          {% endif %}
        </tr>
+       {% if aviso %}
+       <tr>
+        <td colspan=3>
+        <h3><strong class="pull-right">Você está com o carrinho cheio</strong></h3>
+        </td>
+        </tr>
+        {% endif %}
        <tr>
          <td colspan=1 >
            <a href="../modalidades" class="btn btn-warning pull-left">

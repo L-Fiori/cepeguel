@@ -4,7 +4,28 @@
 <head>
     <link rel="stylesheet"  href="{% static 'core/base.css' %}" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(function() {
+                $( "#some_flag" ).dialog({
+                    modal: true,
+                    closeOnEscape: false,
+                    dialogClass: "no-close",
+                    resizable: false,
+                    draggable: false,
+                    width: 600,
+                    buttons: [
+                        {
+                            text: "OK",
+                            click: function() {
+                            $( this ).dialog( "close" );
+                            }
+                        }
+                    ]
+                });
+            });
+        });
+    </script>
     <title>Cepeguel</title>
 <style>
 body{

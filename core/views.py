@@ -37,6 +37,7 @@ def produto(request, id_antigo2, id_antigo1, item_id):
     obj = Produto.objects.get(id=item_id)
     filtered_orders = Order.objects.filter(owner=request.user.id, is_ordered=False)
     current_order_products = []
+
     if filtered_orders.exists():
     	user_order = filtered_orders[0]
     	user_order_items = user_order.items.all()
