@@ -8,6 +8,7 @@ from core.views import produto
 
 from usuarios.models import Usuario, ManagerDoUsuario
 from artigo.models import TipoDeProduto, Produto
+from aluguel.models import Aluguel
 
 from carrinho.extras import generate_order_id
 from carrinho.models import OrderItem, Order
@@ -161,6 +162,30 @@ def update_transaction_records(request, token):
 def success(request, **kwargs):
     # a view signifying the transcation was successful
     return render(request, 'carrinho/cestadeprotudos.html', {})
+
+
+def aluguel_carrinho(request):
+    context = {}
+
+    # Primeiro tem que ver qual user tá querendo alugar
+    my_user_profile = Usuario.objects.filter(email=request.user).first()
+
+    # Depois tem que ver qual é o carrinho do user (quais itens, qual a Order)
+    existing_order = get_user_pending_order(request)
+    items = existing_order.get_cart_items()
+    print(items)
+
+    # Daí instancia um objeto aluguel para CADA ITEM DO ORDER
+    for item in items:
+        Aluguel(usuario=my_user_profile, prod=item)
+        item.update(disp=False)
+        item.update(rese=True)
+        # Depois deleta todos os itens do carrinho
+        delete_from_cart(request, item)
+
+    # Mostrar nova cesta de produtos
+    return redirect(reverse('core:modalidades'))
+
 
 
 """ 

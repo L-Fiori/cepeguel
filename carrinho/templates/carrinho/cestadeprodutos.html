@@ -52,7 +52,7 @@
          <td colspan=2>
            {% if order.get_cart_items %}
            <div style='margin-top:3%'>
-             <button class="button button1" onclick="document.location='../modalidades'">Alugar</button>
+             <button class="button button1" onclick="document.location='{% url "carrinho:aluguel_carrinho" %}'">Alugar</button>
            </div>
            {% endif %}
          </td>

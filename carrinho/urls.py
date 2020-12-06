@@ -10,9 +10,11 @@ from .views import (
     checkout,
     update_transaction_records,
     success,
+    aluguel_carrinho
 )
 
 urlpatterns = [
+    path('teste/', aluguel_carrinho, name='aluguel_carrinho'),
     url(r'^add-to-cart/(?P<item_id>[-\w]+)/$', add_to_cart, name="add_to_cart"),
     url(r'^success/$', success, name='purchase_success'),
     url(r'^item/delete/(?P<item_id>[-\w]+)/$', delete_from_cart, name='delete_item'),
