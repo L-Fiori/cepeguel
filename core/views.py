@@ -34,18 +34,21 @@ def produtos(request, id_antigo, id):
     return render(request, 'core/produtos.html', context)
 
 def produto(request, id_antigo2, id_antigo1, item_id):
+    my_user_profile = Usuario.objects.filter(email=request.user).first()
     obj = Produto.objects.get(id=item_id)
     filtered_orders = Order.objects.filter(owner=request.user.id, is_ordered=False)
     current_order_products = []
-
+    professor = my_user_profile.is_professor
     if filtered_orders.exists():
-    	user_order = filtered_orders[0]
-    	user_order_items = user_order.items.all()
-    	current_order_products = [product.product for product in user_order_items]
-
+        user_order = filtered_orders[0]
+        user_order_items = user_order.items.all()
+        current_order_products = [product.product for product in user_order_items]
+        tamanho = len(current_order_products)
     context = {
-        'obj': obj,
-        'current_order_products': current_order_products
+    'obj': obj,
+    'current_order_products': current_order_products,
+    'tamanho':tamanho,
+    'professor':professor,
     }
 
     return render(request, 'core/produto.html', context)

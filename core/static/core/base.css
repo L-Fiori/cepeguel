@@ -102,6 +102,17 @@
   color: black;
 }
 
+.botao1vermelho {
+  background-color: #fc4a1a;
+  color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.botao1vermelho:hover {
+  background-color: whitesmoke;
+  color: black;
+}
 .fundo {
   background-color: whitesmoke;
   position: relative;
@@ -257,6 +268,47 @@ span.psw {
   justify-self: center;
 }
 
+.gridartigoscesta {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 33.333333%);
+  height: 100%;
+}
+
+.artigocesta {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  justify-self: center;
+  margin-top: 10%;
+  width: 85%;
+  height: 100%;
+  border-radius: 5px;
+}
+
+.fotoartigocesta {
+  height: 100%;
+  margin-bottom: 1%;
+  text-align: center;
+  border: 1px solid black;
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-top: 2%;
+  border-radius: 5px;
+}
+
+.textoartigocesta {
+  position: relative;
+  color: black;
+  height: 15%;
+  text-align: center;
+  padding-top: 2%;
+  margin-bottom: 3%;
+  margin-left: 2%;
+  margin-right: 2%;
+  justify-self: center;
+}
+
 .disponibilidadeartigo {
   position: relative;
   color: black;
@@ -310,4 +362,5 @@ span.psw {
 .gridcesta {
   position: relative;
   width: 60%;
+  height: 100%;
 }
