@@ -167,6 +167,7 @@ def success(request, **kwargs):
 
 def aluguel_carrinho(request):
     context = {}
+    produtos = []
 
     # Primeiro tem que ver qual user tá querendo alugar
     my_user_profile = Usuario.objects.filter(email=request.user).first()
@@ -174,47 +175,20 @@ def aluguel_carrinho(request):
     # Depois tem que ver qual é o carrinho do user (quais itens, qual a Order)
     existing_order = get_user_pending_order(request)
     items = existing_order.get_cart_items()
-    print(items)
+
+    for item in items:
+        produtos.append(Produto.objects.get(nome=item))
 
     # Daí instancia um objeto aluguel para CADA ITEM DO ORDER
-    for item in items:
-        Aluguel(usuario=my_user_profile, prod=item)
-        item.update(disp=False)
-        item.update(rese=True)
+    for produto in produtos:
+        Aluguel.objects.create(usuario=my_user_profile, prod=produto)
+        produto.disp = False
+        produto.rese = True
+        produto.save(update_fields=["disp", "rese"]) 
         # Depois deleta todos os itens do carrinho
-        delete_from_cart(request, item)
+        item_to_delete = OrderItem.objects.filter(product=produto)
+        if item_to_delete.exists():
+            item_to_delete[0].delete()
 
     # Mostrar nova cesta de produtos
     return redirect(reverse('core:modalidades'))
-
-
-
-""" 
-def minha_cesta(request):
-    my_user_profile = Usuario.objects.filter(email=request.user).first()
-    my_orders = Order.objects.filter(is_ordered=True, owner=my_user_profile)
-    context = {
-        'my_orders': my_orders
-    }
-
-    return render(request, "carrinho/cestadeprodutos.html", context)
-
-
-    user_profile = get_object_or_404(Perfil, user=request.usuario)
-    product = TipoDeProduto.objects.filter(id=kwargs.get('item_id', "")).first()
-
-    if product in request.usuario.perfil.produtos.all():
-        messages.info(request, 'Voce já tem esse produto')
-        return redirect('/')
-    order_item, status = OrderItem.objects.get_or_create(product=product)
-
-    user_order, status = Order.objects.get_or_create(owner=user_profile, is_ordered=False)
-    user_order.items.add(order_item)
-
-    if status:
-        user_order.ref_code = generate_order_id()
-        user_order.save()
-
-    messages.info(request, "Item adicionado")
-    return redirect("/") """
- 

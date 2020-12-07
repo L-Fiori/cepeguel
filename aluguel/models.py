@@ -13,8 +13,14 @@ class Aluguel(models.Model):
     created_at      = models.DateTimeField(auto_now_add=True)
     user_returned   = models.BooleanField(default=False)
     rented          = models.BooleanField(default=False)
-    rented_at       = models.DateTimeField(default=None)
+    rented_at       = models.DateTimeField(default=None, null=True)
 
+    class Meta:
+        # Gives the proper plural name for admin
+        verbose_name_plural = "Aluguéis"
+
+    def __str__(self):
+        return self.prod.nome
 
     # DEVEMOS DAR UPDATE NO ATUAL ESTADO DO PRODUTO RELACIONADO ASSIM QUE O OBJETO ALUGUEL FOR CRIADO
 
@@ -65,23 +71,3 @@ class Aluguel(models.Model):
             return True
         else:
             return False
-    
-
-
-'''
-
-Provavelmente não vamos precisar da implementação do ItemDeAluguel,
-mas ta aqui pra não se perder caso formos precisar
-
-produto   = models.ManyToManyField(Produto, through='ItemDeAluguel')
-
-class ItemDeAluguel(models.Model):
-    aluguel = models.ForeignKey(Aluguel, default="deafult", on_delete=models.CASCADE)
-    produto = models.ForeignKey(Produto, default="default", on_delete=models.CASCADE)
-    created_at = models.DateField(default=timezone.now)
-
-    class Meta:
-        # Gives the proper plural name for admin
-        verbose_name_plural = "Itens De Aluguel"
-
-'''
