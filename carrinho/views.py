@@ -24,8 +24,9 @@ def add_to_cart(request, **kwargs):
     my_user_profile = Usuario.objects.filter(email=request.user).first()
     existing_order = get_user_pending_order(request)
     lista_de_produtos = 0
+    user_rents = list(Aluguel.objects.filter(usuario=my_user_profile))
     if (existing_order != 0): lista_de_produtos = existing_order.get_cart_total()
-    if ( lista_de_produtos < 3 or my_user_profile.is_professor):
+    if ( lista_de_produtos < 3 or my_user_profile.is_professor or user_rents = 3):
     
         # get the user profile
         user_profile = get_object_or_404(Usuario, email=request.user)
@@ -189,6 +190,7 @@ def aluguel_carrinho(request):
         item_to_delete = OrderItem.objects.filter(product=produto)
         if item_to_delete.exists():
             item_to_delete[0].delete()
+            
 
     # Mostrar nova cesta de produtos
     return redirect(reverse('core:modalidades'))
