@@ -23,7 +23,8 @@ def get_user_pending_order(request):
 def add_to_cart(request, **kwargs):
     my_user_profile = Usuario.objects.filter(email=request.user).first()
     existing_order = get_user_pending_order(request)
-    lista_de_produtos = existing_order.get_cart_total()
+    lista_de_produtos = 0
+    if (existing_order != 0): lista_de_produtos = existing_order.get_cart_total()
     if ( lista_de_produtos < 3 or my_user_profile.is_professor):
     
         # get the user profile
@@ -58,8 +59,8 @@ def delete_from_cart(request, item_id):
 def order_details(request, **kwargs):
     my_user_profile = Usuario.objects.filter(email=request.user).first()
     existing_order = get_user_pending_order(request)
-
-    soma_pedidos = existing_order.get_cart_total()
+    soma_pedidos = 0
+    if (existing_order != 0): soma_pedidos = existing_order.get_cart_total()
     if (soma_pedidos < 3 or my_user_profile.is_professor): aviso = False
     else: aviso = True
 

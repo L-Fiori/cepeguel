@@ -21,7 +21,7 @@ class Order(models.Model):
     owner = models.ForeignKey(Usuario, on_delete=models.SET_NULL, null=True)
     is_ordered = models.BooleanField(default=False)
     items = models.ManyToManyField(OrderItem)
-    # Form de Aluguel
+ 
     date_ordered = models.DateTimeField(auto_now=True)
 
     def get_cart_items(self):

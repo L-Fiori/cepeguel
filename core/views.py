@@ -15,7 +15,6 @@ def home(request):
 def modalidades(request):
     modalidades = Modalidade.objects.all()
     context = {'modalidades': modalidades}
-    a=1/0
 
     return render(request, 'core/modalidades.html', context)
 
