@@ -13,7 +13,7 @@ class Aluguel(models.Model):
     created_at      = models.DateTimeField(auto_now_add=True)
     user_returned   = models.BooleanField(default=False)
     rented          = models.BooleanField(default=False)
-    rented_at       = models.DateTimeField(default=None, null=True)
+    rented_at       = models.DateTimeField(default=None, null=True, blank=True)
 
     class Meta:
         # Gives the proper plural name for admin
@@ -22,20 +22,23 @@ class Aluguel(models.Model):
     def __str__(self):
         return self.prod.nome
 
-    # DEVEMOS DAR UPDATE NO ATUAL ESTADO DO PRODUTO RELACIONADO ASSIM QUE O OBJETO ALUGUEL FOR CRIADO
-
     @property
-    def delete_after_two_hours(self):
+    def delete_after_one_or_five_hours(self):
         '''
-        Se nada acontecer, a instância do aluguel será deletada em cinco horas e o status do artigo vai de reservado para disponível.
+        Se nada acontecer, a instância do aluguel será deletada em uma hora (caso o usuário seja aluno) ou
+        em cinco horas (caso seja professor) e o status do artigo vai de reservado para disponível.
         '''
 
-        time = datetime.datetime.now() - datetime.timedelta(minutes=120)
-        if (self.created_at < time) and not self.alugado:
-            produto = Produto.objects.get(id=self.prod)
-            produto.update(disp=True)
-            produto.update(rese=False)
-            # Talvez implementar aqui também o ban do usuário?
+        if usuario.is_professor:
+            time = datetime.datetime.now() - datetime.timedelta(minutes=300)
+        else:
+            time = datetime.datetime.now() - datetime.timedelta(minutes=60)
+
+        if (self.created_at < time) and not self.rented:
+            produto = Produto.objects.get(id=self.prod.id)
+            produto.rese = False
+            produto.disp = True
+            produto.save(update_fields=["disp", "rese"])
             aluguel = Aluguel.objects.get(pk=self.id)
             aluguel.delete()
             return True
@@ -45,14 +48,17 @@ class Aluguel(models.Model):
     @property
     def item_rented(self):
         '''
-        Se o usuário pegar o artigo em menos de cinco horas, muda o status do artigo para alugado.
+        Se o usuário pegar o artigo antes , muda o status do artigo para alugado.
         '''
-
-        if self.alugado:
-            produto = Produto.objects.get(id=self.prod)
-            produto.update(alug=True)
-            produto.update(rese=False)
-
+    
+        if self.rented:
+            produto = Produto.objects.get(id=self.prod.id)
+            produto.alug = True
+            produto.rese = False
+            produto.save(update_fields=["alug", "rese"])
+            return True
+        else:
+            return False
 
     @property
     def delete_after_item_returned(self):
@@ -62,11 +68,11 @@ class Aluguel(models.Model):
         '''
 
         if self.user_returned:
-            produto = self.prod
-            aluguel = Aluguel.objects.get(pk=self.id)
-            produto = Produto.objects.get(nome=produto)
-            produto.update(disp=True)
-            produto.update(alug=False)
+            produto = Produto.objects.get(id=self.prod.id)
+            aluguel = Aluguel.objects.get(id=self.id)
+            produto.disp = True
+            produto.alug = False
+            produto.save(update_fields=["disp", "alug"])
             aluguel.delete()
             return True
         else:
