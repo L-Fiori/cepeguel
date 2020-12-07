@@ -129,7 +129,6 @@
 .logo {
   text-align: center;
   margin-top: 10%;
-  border: 1px solid black;
 }
 .textomenu {
   color: black;
@@ -203,7 +202,6 @@ span.psw {
   text-align: center;
   margin-left: 42.5%;
   width: 15%;
-  border: 1px solid black;
 }
 
 .gridmodalide {

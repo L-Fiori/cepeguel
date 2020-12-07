@@ -26,7 +26,7 @@ def add_to_cart(request, **kwargs):
     lista_de_produtos = 0
     user_rents = list(Aluguel.objects.filter(usuario=my_user_profile))
     if (existing_order != 0): lista_de_produtos = existing_order.get_cart_total()
-    if ( lista_de_produtos < 3 or my_user_profile.is_professor or user_rents = 3):
+    if ( lista_de_produtos < 3 or my_user_profile.is_professor or (user_rents+lista_de_produtos) >= 3):
     
         # get the user profile
         user_profile = get_object_or_404(Usuario, email=request.user)

@@ -11,9 +11,18 @@
             <div class='fotoartigo'>
                 <img src= "{{ produto.foto.url}}", style="width:100%;height:100%">
             </div>
+            {% if request.user.is_authenticated %}
             <div class='textoartigo'>
                 <button class="botaoproduto botao1laranja" onclick="document.location='{% url "core:produto" id_antigo2 id_antigo1 produto.id %}'", style="width:100%;height:100%;margin-top:0px;margin-left:0px;border:1px solid black">{{ produto.nome }}</button>
             </div>
+            {% else %}
+            <div class='textoartigo'>
+                {{ produto.nome }}
+                <div style="font-size:12px;margin-top:3%;color: #fc4a1a">
+                <b>Você precisa estar logado para alugar</b>
+             </div>
+            </div>
+            {% endif %}
             <div class='disponibilidadeartigo'>
                 {% if produto.disp %}
                 Disponibilidade: Disponível
