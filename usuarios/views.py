@@ -56,4 +56,3 @@ def login_view(request):
     return render(request, 'usuarios/login.html', context)
 
 
-# ------ Carrinho ----------------------------

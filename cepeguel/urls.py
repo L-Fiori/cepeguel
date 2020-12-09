@@ -38,6 +38,7 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
     path('aluguel/', include('aluguel.urls')),
+    path('artigo/', include('artigo.urls')),
     path('cestadeprodutos/', include('carrinho.urls', namespace='carrinho')),
     path('cadastro/', registration_view, name='cadastro'),
     path('login/', login_view, name='login'),

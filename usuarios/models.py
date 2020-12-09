@@ -5,7 +5,6 @@ from artigo.models import Produto, TipoDeProduto
 from django.conf import settings
 from django.db.models.signals import post_save
 
-
 # Create your models here.
 
 class ManagerDoUsuario(BaseUserManager):
@@ -81,13 +80,6 @@ class Usuario(AbstractBaseUser):
         
     def has_module_perms(self, app_label):
         return True
-
-""" def post_save_profile_create(sender, instance, created, *args, **kwargs):
-    if created:
-        Usuario.objects.get_or_create(user=instance)
-
-post_save.connect(post_save_profile_create, sender=Usuario) """
-
 
 
 

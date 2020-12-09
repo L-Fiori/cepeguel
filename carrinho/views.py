@@ -13,6 +13,17 @@ from aluguel.models import Aluguel
 from carrinho.extras import generate_order_id
 from carrinho.models import OrderItem, Order
 
+def check_time():
+    users = Usuario.objects.all()
+    for user in users:
+        my_user_profile = Usuario.objects.filter(email=user).first()
+        user_rents = Aluguel.objects.filter(usuario=my_user_profile)
+        for ordeer in user_rents:
+            Aluguel.delete_after_one_or_five_hours(ordeer)
+            if ordeer.rent_in_process == False:
+                aluguel = get_object_or_404(Aluguel, id=ordeer.id)
+                aluguel.delete()
+
 def get_user_pending_order(request):
     user_profile = get_object_or_404(Usuario, email=request.user)
     order = Order.objects.filter(owner=user_profile, is_ordered=False)
@@ -21,6 +32,7 @@ def get_user_pending_order(request):
     return 0
 
 def add_to_cart(request, **kwargs):
+    check_time()
     my_user_profile = Usuario.objects.filter(email=request.user).first()
     existing_order = get_user_pending_order(request)
     lista_de_produtos = 0
@@ -50,6 +62,7 @@ def add_to_cart(request, **kwargs):
         return redirect(reverse('carrinho:order_details'))
 
 def delete_from_cart(request, item_id):
+    check_time()
     item_to_delete = OrderItem.objects.filter(pk=item_id)
     if item_to_delete.exists():
         item_to_delete[0].delete()
@@ -58,6 +71,7 @@ def delete_from_cart(request, item_id):
 
 
 def order_details(request, **kwargs):
+    check_time()
     my_user_profile = Usuario.objects.filter(email=request.user).first()
     existing_order = get_user_pending_order(request)
     soma_pedidos = 0
@@ -167,6 +181,7 @@ def success(request, **kwargs):
 
 
 def aluguel_carrinho(request):
+    check_time()
     context = {}
     produtos = []
 
@@ -176,6 +191,7 @@ def aluguel_carrinho(request):
     # Depois tem que ver qual é o carrinho do user (quais itens, qual a Order)
     existing_order = get_user_pending_order(request)
     items = existing_order.get_cart_items()
+
 
     for item in items:
         produtos.append(Produto.objects.get(nome=item))
