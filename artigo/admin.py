@@ -36,6 +36,7 @@ class ProdutoAdmin(admin.ModelAdmin):
     list_display = ("tipo", "nome", "disp", "rese", "alug", "pack")
     form = ProdutoAdminForm
     actions = [make_disponivel, make_reservado, make_alug]
+    list_filter = ("tipo",)
     def get_form(self, request, obj=None, **kwargs):
         form = super().get_form(request, obj, **kwargs)
         return form
