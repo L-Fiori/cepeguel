@@ -5,7 +5,10 @@
 {% endblock scripts %} 
 {% block content %}
 
-<title>Cesta de produtos</title>
+<title>Produtos reservados</title>
+<div style='text-align:center;color:white;font-size:30px;margin-top:2%;background-color:#4BBFE6;width:24%;margin-left:38%;border-radius:5px;'>
+        <b>Produtos reservados</b>
+    </div>
     <div class='gridgeral'>
         <div class='gridartigos'>
             {% for item in reserva %}
@@ -32,16 +35,16 @@
     {% endif %}
             
     {% if reserva %}
-    <div id='timer_css' class='textoartigocesta'>
-        Tempo até o primeiro item expirar:
-        <div id="countdown-box">
+    <div id='timer_css' class='textoartigocesta' style='color:red;font-size:20px;'>
+        <b>Tempo até o primeiro item expirar:</b>
+        <div id="countdown-box" style = 'color:black;font-size:18px'>
             <div class="spinner-border" role="status">
         </div>
     </div>
     </div>
     {% endif %}
     {% if not reserva %}
-    <div style='text-align:center;margin-top:10%'>
+    <div style='text-align:center;margin-top:5%'>
         <img src="{% static 'core/imagens/carrinhovazio.png' %}" alt=CEPEguel style="width:400px;height:292px;"">
         <div style='margin-top:2%'><b>Você não reservou nenhum item ainda</b></div>
     </div>

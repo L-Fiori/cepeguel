@@ -3,7 +3,9 @@
 {% block content %}
 
 <title>Cesta de produtos</title>
-
+<div style='text-align:center;color:white;font-size:30px;margin-top:2%;background-color:#4BBFE6;width:24%;margin-left:38%;border-radius:5px;'>
+  <b>Cesta de produtos</b>
+</div>
     <div class='gridgeral'>
         <div class='gridartigos'>
             {% for item in order.get_cart_items %}  
@@ -34,7 +36,7 @@
           <button class="botao botao1vermelho" onclick="document.location='{% url "carrinho:aluguel_carrinho" %}'", style="width:20%;height:5%;margin-left:40%;border:1px solid black">Reservar</button>
         </div>
     {% else %}
-    <div style='text-align:center;margin-top:10%'>
+    <div style='text-align:center;margin-top:5%'>
       <img src="{% static 'core/imagens/carrinhovazio.png' %}" alt=CEPEguel style="width:400px;height:292px;"">
       <div style='margin-top:2%'><b>Seu carrinho está vazio</b></div>
     </div>
