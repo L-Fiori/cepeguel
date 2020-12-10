@@ -1,28 +1,48 @@
 {% extends 'core/base.html' %}
 {% load static %}
+{% block scripts %}
+<script src={% static 'core/timer.js' %} defer></script>
+{% endblock scripts %} 
 {% block content %}
 
 <title>Cesta de produtos</title>
     <div class='gridgeral'>
         <div class='gridartigos'>
-            {% for item in items %}
+            {% for item in reserva %}
             <div class='artigocesta' style="height:300px">    
                 <div class='fotoartigocesta'>
-                  <img src= "{{ item.foto.url }}", style="width:100%;height:100%">
+                  <img src= "{{ item.prod.foto.url }}", style="width:100%;height:100%">
                 </div>
                 <div class='textoartigocesta'>
-                  {{ item.nome }}
+                  {{ item.prod.nome }}
                 </div>
             </div>
-            {% endfor %}    
+            {% if item.usuario.is_professor %}
+            <div id='event-box' hidden> {{ item.created_at|date:"m d, Y H:i:s" }} </div>
+            <div id='event-box-timer' hidden> {{ 18000000 }} </div>
+            {% else %}
+            <div id='event-box' hidden> {{ item.created_at|date:"m d, Y H:i:s" }} </div>
+            <div id='event-box-timer' hidden> {{ 3600000 }} </div>
+            {% endif %}
+            {% endfor %}
+            
+            {% if reserva %}
+            <div id='timer_css' class='textoartigocesta'>
+                Tempo até o primeiro item expirar:
+                <div id="countdown-box">
+                    <div class="spinner-border" role="status">
+                    </div>
+                </div>
+            </div>
+            {% endif %}  
 
         </div>
     </div>
-    {% if naotemreserva %}
+    {% if not reserva %}
     <div style='text-align:center;margin-top:10%'>
         <img src="{% static 'core/imagens/carrinhovazio.png' %}" alt=CEPEguel style="width:400px;height:292px;"">
         <div style='margin-top:2%'><b>Você não reservou nenhum item ainda</b></div>
-      </div>
+    </div>
     {% endif %}
 
 

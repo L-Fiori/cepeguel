@@ -111,28 +111,14 @@ def login(request):
     return render(request, 'core/login.html', context)
 
 def reservados(request):
-    my_user_profile = Usuario.objects.filter(email=request.user).first()
-    user_rents = Aluguel.objects.filter(usuario=my_user_profile,not_rented=True)
-    rents = user_rents.values_list('prod')
-    idprodutos = list(rents)
-    naotemreserva = False
-    if len(idprodutos) == 0:
-        naotemreserva = True
-    listaidprodutos=[]
-    items=[]
-    for i in idprodutos:
-        for j in i:
-            num = ""         
-            if type(j) == int:    
-                num += str(j) 
-        item_id = int(num)
-        listaidprodutos.append(int(num))
-        obj = Produto.objects.get(id=item_id)
-        items.append(obj)
-  
+    check_time()
+    list_alug = []
+    alugueis = Aluguel.objects.all()
+    for aluguel in alugueis:
+        if aluguel.prod.rese == True:
+            list_alug.append(aluguel)
     context = {
-    'naotemreserva':naotemreserva,
-    'items':items,
+        'reserva':list_alug,
     }
 
     return render(request,'core/reservados.html', context)

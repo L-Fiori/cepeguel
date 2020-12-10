@@ -61,6 +61,6 @@ class AluguelAdmin(admin.ModelAdmin):
 
     def get_form(self, request, obj=None, **kwargs):
         form = super().get_form(request, obj, **kwargs)
-        form.base_fields["usuario"].label = "Email do meliante"
+        form.base_fields["usuario"].label = "Email"
         return form
 
