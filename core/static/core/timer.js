@@ -12,7 +12,7 @@ const myCountdown = setInterval(()=>{
     const s = Math.floor((eventDate / (1000) - (now / (1000))) % 60)
 
     if (diff > 0) {
-        countdownBox.innerHTML = h + ":" + m + ":" + s
+        countdownBox.innerHTML = h + " horas, " + m + " minutos e " + s + " segundos."
     } else {
         clearInterval(myCountdown)
         countdownBox.innerHTML = "Reserva expirada"

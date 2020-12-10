@@ -117,8 +117,12 @@ def reservados(request):
     for aluguel in alugueis:
         if aluguel.prod.rese == True:
             list_alug.append(aluguel)
+    reserva1=[]
+    if list_alug:
+        reserva1 = list_alug[0]
     context = {
         'reserva':list_alug,
+        'reserva1':reserva1,
     }
 
     return render(request,'core/reservados.html', context)
