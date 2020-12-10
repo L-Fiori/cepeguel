@@ -71,6 +71,7 @@ def produto(request, id_antigo2, id_antigo1, item_id):
     listaidprodutos = []
     existing_order = get_user_pending_order(request)
     lista_de_produtos = 0
+    tamanho = 0
     if (existing_order != 0): lista_de_produtos = existing_order.get_cart_total()
     for i in idprodutos:
         for j in i:
@@ -113,7 +114,8 @@ def login(request):
 def reservados(request):
     check_time()
     list_alug = []
-    alugueis = Aluguel.objects.all()
+    my_user_profile = Usuario.objects.filter(email=request.user).first()
+    alugueis = Aluguel.objects.filter(usuario=my_user_profile)
     for aluguel in alugueis:
         if aluguel.prod.rese == True:
             list_alug.append(aluguel)
