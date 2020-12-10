@@ -17,10 +17,6 @@ body{
 <body>
 <div class="pagina">
     <div class="navbar">
-        <div class="divBusca">
-            <input id="txtBusca" placeholder="Buscar..."/>
-            <button id="btnBusca">Buscar</button>
-        </div>
 
         <div class="textodanavbar">
             <button class="botao botao1" onclick="document.location='../../../../../../../modalidades'">Modalidades</button>
@@ -28,6 +24,9 @@ body{
         {% if request.user.is_authenticated %}
         <div class="textodanavbar">
             <button class="botao botao1" onclick="document.location='../../../../../../../cestadeprodutos'">Cesta</button>
+        </div>
+        <div class="textodanavbar">
+            <button class="botao botao1" onclick="document.location='../../../../../../../reservados'">Reservados</button>
         </div>
         {% endif %}
         <div class="textodanavbar">

@@ -21,7 +21,7 @@
                 {% if obj in current_order_products %}
                      <button class="botao botao1laranja" onclick="document.location='{% url "carrinho:order_details" %}'", >Ir Para Carrinho</button>
                 {% else %}
-                <button class="botao botao1laranja" onclick="document.location='{% url "carrinho:add_to_cart" obj.id %}'", >Alugar</button>
+                <button class="botao botao1laranja" onclick="document.location='{% url "carrinho:add_to_cart" obj.id %}'", >Reservar</button>
                 {% endif %}
               {% endif %}
             {% elif obj in current_order_products %}

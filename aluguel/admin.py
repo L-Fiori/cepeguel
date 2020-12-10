@@ -6,6 +6,7 @@ from django.http import HttpResponse
 from .models import Aluguel
 from usuarios.models import Usuario
 from django import forms
+from artigo.models import Produto
 
 # Register your models here.
 
@@ -17,19 +18,14 @@ class AluguelAdminForm(forms.ModelForm):
         fields = "__all__"
 
     def clean(self):
-        emaill = self.cleaned_data.get('usuario')
+        prodd  = self.cleaned_data.get('prod')
+        order = Aluguel.objects.get(prod=prodd )
         if self.cleaned_data.get('rent_in_process')==False:
-            my_user_profile = Usuario.objects.filter(email=emaill).first()
-            user_rents = Aluguel.objects.filter(usuario=my_user_profile)
-            for ordeer in user_rents:
-                Aluguel.delete_after_item_returned(ordeer)            
+            Aluguel.delete_after_item_returned(order)            
             return
 
         elif self.cleaned_data.get('not_rented')==False:
-            my_user_profile = Usuario.objects.filter(email=emaill).first()
-            user_rents = Aluguel.objects.filter(usuario=my_user_profile)
-            for ordeer in user_rents:
-                Aluguel.item_rented(ordeer)
+            Aluguel.item_rented(order)
             return
 
 
@@ -37,8 +33,8 @@ class AluguelAdminForm(forms.ModelForm):
 def make_alugado(modeladmin, request, queryset):
     my_user_profile = Usuario.objects.filter(email=request.user).first()
     user_rents = Aluguel.objects.filter(usuario=my_user_profile)
-    for ordeer in user_rents:
-        Aluguel.item_rented(ordeer)
+    for order in user_rents:
+        Aluguel.item_rented(order)
     queryset.update(not_rented=False)
 make_alugado.short_description = "Marcar todos os aluguéis como alugados"
 
@@ -51,8 +47,8 @@ make_not_alugado.short_description = "Marcar todos os aluguéis como não alugad
 def make_returned(modeladmin, request, queryset):
     my_user_profile = Usuario.objects.filter(email=request.user).first()
     user_rents = Aluguel.objects.filter(usuario=my_user_profile)
-    for ordeer in user_rents:
-        Aluguel.delete_after_item_returned(ordeer)   
+    for order in user_rents:
+        Aluguel.delete_after_item_returned(order)   
     queryset.update(rent_in_process=False)
 make_returned.short_description = "Marcar todos os aluguéis como encerrados"
 

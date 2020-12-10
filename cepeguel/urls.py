@@ -25,6 +25,7 @@ from core.views import (
     login,
     produtosdemodalidade,
     produto,
+    reservados,
 )
 
 from usuarios.views import (
@@ -44,5 +45,6 @@ urlpatterns = [
     path('login/', login_view, name='login'),
     path('logout/', logout_view, name="logout"),
     path('modalidades/', include('core.urls', namespace='core')),
+    path('reservados/', reservados, name='reservados')
     ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

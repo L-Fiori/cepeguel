@@ -79,7 +79,8 @@ class Aluguel(models.Model):
         aluguel = Aluguel.objects.get(id=self.id)
         produto.disp = True
         produto.alug = False
-        produto.save(update_fields=["disp", "alug"])
+        produto.rese = False
+        produto.save(update_fields=["disp", "alug","rese"])
         return
 
 

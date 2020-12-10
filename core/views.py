@@ -77,7 +77,7 @@ def produto(request, id_antigo2, id_antigo1, item_id):
             num = ""         ## se você está lendo isso, sinceramente me desculpe
             if type(j) == int:    
                 num += str(j) 
-            listaidprodutos.append(int(num))
+        listaidprodutos.append(int(num))
     if (len(li_user_rents)+lista_de_produtos) >= 3 and not professor and len(li_user_rents) != 0:
         alugou = True
     if filtered_orders.exists():
@@ -109,3 +109,30 @@ def login(request):
     context = {}
 
     return render(request, 'core/login.html', context)
+
+def reservados(request):
+    my_user_profile = Usuario.objects.filter(email=request.user).first()
+    user_rents = Aluguel.objects.filter(usuario=my_user_profile,not_rented=True)
+    rents = user_rents.values_list('prod')
+    idprodutos = list(rents)
+    naotemreserva = False
+    if len(idprodutos) == 0:
+        naotemreserva = True
+    listaidprodutos=[]
+    items=[]
+    for i in idprodutos:
+        for j in i:
+            num = ""         
+            if type(j) == int:    
+                num += str(j) 
+        item_id = int(num)
+        listaidprodutos.append(int(num))
+        obj = Produto.objects.get(id=item_id)
+        items.append(obj)
+  
+    context = {
+    'naotemreserva':naotemreserva,
+    'items':items,
+    }
+
+    return render(request,'core/reservados.html', context)
