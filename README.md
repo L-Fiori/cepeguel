@@ -20,10 +20,10 @@ Após a clonagem do repositório, para rodar o servidor é necessário digitar o
 python manage.py runserver
 ```
 
-Em seguida prosseguir ao endereço http://127.0.0.1:8000/
-Há um banco de dados alocado com produtos, modalidades, usuários (alunos, professores e administradores) já existente e que pode ser utilizado facilmente para testes, muito embora instâncias de qualquer classe também possam ser criadas ou deletadas livremente.
+Em seguida prosseguir ao endereço http://127.0.0.1:8000/  
+Há um banco de dados alocado com produtos, modalidades, usuários (alunos, professores e administradores) já existente e que pode ser utilizado facilmente para testes, muito embora instâncias de qualquer classe também possam ser criadas ou deletadas livremente.    
 
-Para a visualização do banco de dados de uma forma organizada, basta ir à página http://127.0.0.1:8000/admin e autenticar-se com algum usuário que tenha permissão de administrador.
+Para a visualização do banco de dados de uma forma organizada, basta ir à página http://127.0.0.1:8000/admin e autenticar-se com algum usuário que tenha permissão de administrador.  
 
 Usuários para teste (se não quiser ter o trabalho de criar algum):
 
