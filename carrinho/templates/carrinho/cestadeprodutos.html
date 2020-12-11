@@ -27,13 +27,16 @@
     
     {% if aviso %} 
         <div style='text-align:center;margin-top:3.5%'>
-        Você está com o carrinho cheio
+        <b>Você está com o carrinho cheio</b>
         </div>
     {% endif %}
 
     {% if order.get_cart_items %}
         <div style='margin-top:3%'>
           <button class="botao botao1vermelho" onclick="document.location='{% url "carrinho:aluguel_carrinho" %}'", style="width:20%;height:5%;margin-left:40%;border:1px solid black">Reservar</button>
+        </div>
+        <div style='text-align: center;margin-top:3%;'>
+        <b>Se você não retirar o produto dentro do prazo estabelecido, você será impedido de reservar novos itens e deverá comparecer ao CEPEUSP.</b>
         </div>
     {% else %}
     <div style='text-align:center;margin-top:5%'>

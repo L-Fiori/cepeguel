@@ -89,8 +89,12 @@ def produto(request, id_antigo2, id_antigo1, item_id):
     '''
 
     check_time()
-    alugou = False
+    pode_alugar = True
+    tem_aluguel = False
     my_user_profile = Usuario.objects.filter(email=request.user).first()
+    banido = True
+    if my_user_profile.is_able_to_rent:
+        banido = False
     user_rents = Aluguel.objects.filter(usuario=my_user_profile)
     id_produtos = list(user_rents.values_list('prod'))
 
@@ -107,8 +111,10 @@ def produto(request, id_antigo2, id_antigo1, item_id):
     existing_order = get_user_pending_order(request)
     lista_de_produtos = existing_order.get_cart_total() if existing_order != 0 else 0
     li_user_rents = list(user_rents)
+    if (len(li_user_rents) > 0):
+        tem_aluguel = True
     if (len(li_user_rents)+lista_de_produtos) >= 3 and not my_user_profile.is_professor and len(li_user_rents) != 0:
-        alugou = True
+        pode_alugar = False
 
     # Entrega a quantidade de produtos e a lista de produtos que
     # constam no carrinho do usuário no momento.
@@ -129,9 +135,10 @@ def produto(request, id_antigo2, id_antigo1, item_id):
     'current_order_products': current_order_products,
     'tamanho':tamanho,
     'professor':my_user_profile.is_professor,
-    'alugou': alugou,
+    'pode_alugar': pode_alugar,
     'lista_id_produtos':lista_id_produtos,
-    'lista_de_produtos':lista_de_produtos,
+    'banido':banido,
+    'tem_aluguel':tem_aluguel, 
     }
 
     return render(request, 'core/produto.html', context)
@@ -168,5 +175,4 @@ def reservados(request):
         'reserva':list_alug,
         'reserva1':reserva1,
     }
-
     return render(request,'core/reservados.html', context)

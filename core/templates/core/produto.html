@@ -15,33 +15,22 @@
             </div>
         </div>
         <div>
-        {% if not alugou %}
-            {% if tamanho < 3 or professor %}
-              {% if obj.disp %}  
-                {% if obj in current_order_products %}
-                     <button class="botao botao1laranja" onclick="document.location='{% url "carrinho:order_details" %}'", >Ir Para Carrinho</button>
-                {% else %}
-                <button class="botao botao1laranja" onclick="document.location='{% url "carrinho:add_to_cart" obj.id %}'", >Reservar</button>
-                {% endif %}
-              {% endif %}
-            {% elif obj in current_order_products %}
-                <button class="botao botao1laranja" onclick="document.location='{% url "carrinho:order_details" %}'", >Ir Para Carrinho</button>
-            {% else %}
-            <div style='text-align: center;'>
-                <b>Seu carrinho está cheio</b>
-            </div>
-            {% endif %}
-        </div>
-        {% else %}
-            {% if obj.id in lista_id_produtos %}
-                <b>Voce já alugou este produto</b>
-            {% else %}
-            <div style='text-align: center;'>
-                <b>Você já estorou o limite de aluguéis</b>
-             </div>
-            {% endif %}
+        
+        {% if banido %}
+            <b>Você está banido por não ter retirado sua reserva anterior. Por favor, diriga-se ao CEPEUSP.</b>
+        {% elif obj in current_order_products %}
+            <button class="botao botao1laranja" onclick="document.location='{% url "carrinho:order_details" %}'", >Ir Para Carrinho</button>       
+        {% elif tamanho >= 3 and not professor %}
+            <b>Seu carrinho está cheio</b>
+        {% elif tem_aluguel and obj.id in lista_id_produtos %}
+            <b>Você já alugou este produto</b>
+        {% elif not pode_alugar %}
+            <b>Você já atingiu o limite de aluguéis</b>
+        {% elif pode_alugar or professor %}
+            <button class="botao botao1laranja" onclick="document.location='{% url "carrinho:add_to_cart" obj.id %}'", >Reservar</button> 
         {% endif %}
-      
+             
+
         <div style='margin-top:3%;text-align:center'>
             {% if obj.disp %}
             <div style='color: #4abdac'>Disponível</div>

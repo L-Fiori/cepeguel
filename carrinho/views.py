@@ -106,4 +106,4 @@ def aluguel_carrinho(request):
             item_to_delete[0].delete()
             
     # Mostrar nova cesta de produtos
-    return redirect(reverse('core:reservados'))
+    return redirect(reverse('reservados'))
