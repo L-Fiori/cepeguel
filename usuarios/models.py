@@ -5,7 +5,6 @@ from artigo.models import Produto, TipoDeProduto
 from django.conf import settings
 from django.db.models.signals import post_save
 
-# Create your models here.
 
 class ManagerDoUsuario(BaseUserManager):
 
@@ -64,8 +63,8 @@ class Usuario(AbstractBaseUser):
     is_professor    = models.BooleanField(default=False)
     is_staff        = models.BooleanField(default=False)
     is_superuser    = models.BooleanField(default=False)
-
-    #meus_alugueis   = models.ManyToManyField(TipoDeProduto, blank=True)
+    is_able_to_rent = models.BooleanField(default=True, help_text="Verdadeiro se está apto a alugar produtos, isto é, se não foi banido")
+    rents_not_taken = models.IntegerField(default=0, help_text="Número de reservas que o usuário não buscou")
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name', 'nusp', 'telephone']

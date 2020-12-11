@@ -22,8 +22,7 @@ from core.views import (
     cestadeprodutos,
     home,
     modalidades,
-    login,
-    produtosdemodalidade,
+    produtos_de_modalidade,
     produto,
     reservados,
 )

@@ -4,11 +4,13 @@ from django.contrib.auth import login, authenticate, logout
 from usuarios.forms import RegistrationForm, AccountAuthenticationForm
 
 from .models import Usuario
-from carrinho.models import Order
-
-# Create your views here.
 
 def registration_view(request):
+    '''
+    Possibilita que as informações do cadastro sejam conferidas e, caso estejam válidas,
+    sejam armazenadas no banco de dados.
+    '''
+
     context = {}
     if request.POST:
         form = RegistrationForm(request.POST)
@@ -28,10 +30,17 @@ def registration_view(request):
     return render(request, 'usuarios/cadastro.html', context)
 
 def logout_view(request):
+    '''
+    Possibilita o logout.
+    '''
+
     logout(request)
     return redirect('home')
 
 def login_view(request):
+    '''
+    Possibilita o login do usuário.
+    '''
 
     context = {}
 
@@ -53,6 +62,7 @@ def login_view(request):
         form = AccountAuthenticationForm()
 
     context['login_form'] = form
+
     return render(request, 'usuarios/login.html', context)
 
 

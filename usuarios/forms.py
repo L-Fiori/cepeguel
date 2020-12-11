@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate
 
 from usuarios.models import Usuario
 
+
 class RegistrationForm(UserCreationForm):
     email = forms.EmailField(max_length=60, help_text='Obrigatório. Insira um endereço de email válido.')
 

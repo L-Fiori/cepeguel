@@ -30,8 +30,8 @@ Usuários para teste (se não quiser ter o trabalho de criar algum):
 Email            | Senha         | Tipo
 ---------------- | ------------- |-------------
 admin@usp.br     | admin         | Administrador
-professor@usp.br | professor     | Professor
-aluno@usp.br     | aluno         | Aluno
+professor@usp.br | 6hv58mgq      | Professor
+aluno@usp.br     | 72xrp5p9      | Aluno
 
 ## Feito com
 
